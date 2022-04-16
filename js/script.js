@@ -1,30 +1,45 @@
+/* eslint-disable no-undef */
 /* eslint-disable no-prototype-builtins */
 'use strict';
 
+// const templates = {
+//   articleLink: Handlebars.compile(document.querySelector('#template_article_link').innerHTML),
+//   articleLinkAuthor: Handlebars.compile(document.querySelector('#template_article_author').innerHTML),
+//   articleLinkTag: Handlebars.compile(document.querySelector('#template_article_tag').innerHTML),
+//   articleCloudTag: Handlebars.compile(document.querySelector('#template_tag_cloud').innerHTML),
+//   articleCloudAuthor: Handlebars.compile(document.querySelector('#template_author_cloud').innerHTML),
+// };
+
+
 const templates = {
+  // eslint-disable-next-line no-undef
   articleLink: Handlebars.compile(document.querySelector('#template-article-link').innerHTML)
-}
+};
 
 const templates_article_author = {
   articleLinkAuthor: Handlebars.compile(document.querySelector('#template-article-author').innerHTML)
-}
+};
 
 const templates_article_tag = {
   articleLinkTag: Handlebars.compile(document.querySelector('#template-article-tag').innerHTML)
-}
+};
 
 const template_tag_cloud = {
   articleCloudTag: Handlebars.compile(document.querySelector('#template-tag-cloud').innerHTML)
-}
+};
 
 const template_author_cloud = {
   articleCloudAuthor: Handlebars.compile(document.querySelector('#template-author-cloud').innerHTML)
-}
+};
+
+
+
 
 //<li><a href="#tag-{{ href }}">{{ title }}</a></li>
 
 
 function titleClickHandler(event){
+  event.preventDefault();
   const clickedElement = this;
   console.log('Link was clicked!');
   /* [DONE] remove class 'active' from all article links  */
@@ -152,14 +167,12 @@ function generateTags(){
   /* [NEW] find list of tags in right column */
   const tagList = document.querySelector(optTagsListSelector);
   const tagsParams = calculateTagsParams(allTags);
-  /* [NEW] create variable for all links HTML code --------------------------------================= */
+  /* [NEW] create variable for all links HTML code*/
   //let allTagsHTML = ' ';
   const allTagsData = {tags: []};
   /* [NEW] START LOOP: for each tag in allTags */
   for(let tag in allTags){
-    const className = calculateTagClass(allTags[tag], tagsParams);
-    //const tagLine = '<li><a class="' + className + '" href=#tag-' + tag + '>' + tag + ' ' + '</a></li> ';
-    //allTagsHTML = allTagsHTML + tagLine ;
+    //const className = calculateTagClass(allTags[tag], tagsParams); //UNUNIETA KLASA --------------------------------=================
     allTagsData.tags.push({
       tag: tag,
       count: allTags[tag],
