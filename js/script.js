@@ -16,19 +16,19 @@ const templates = {
   articleLink: Handlebars.compile(document.querySelector('#template-article-link').innerHTML)
 };
 
-const templates_article_author = {
+const templatesArticleAuthor = {
   articleLinkAuthor: Handlebars.compile(document.querySelector('#template-article-author').innerHTML)
 };
 
-const templates_article_tag = {
+const templatesArticleTag = {
   articleLinkTag: Handlebars.compile(document.querySelector('#template-article-tag').innerHTML)
 };
 
-const template_tag_cloud = {
+const templateTagCloud = {
   articleCloudTag: Handlebars.compile(document.querySelector('#template-tag-cloud').innerHTML)
 };
 
-const template_author_cloud = {
+const templateAuthorCloud = {
   articleCloudAuthor: Handlebars.compile(document.querySelector('#template-author-cloud').innerHTML)
 };
 
@@ -147,7 +147,7 @@ function generateTags(){
       /* generate HTML of the link */
       //----------------------------------------------------------------------------------------------------------
       const linkHTMLData = {href: tag, title: tag};
-      const tagHTML = templates_article_tag.articleLinkTag(linkHTMLData);
+      const tagHTML = templatesArticleTag.articleLinkTag(linkHTMLData);
       //const tagHTML = '<li><a href="#tag-' + tag + '">' + tag + '</a></li> ';
       /* add generated code to html variable */
       html = html + tagHTML;
@@ -180,7 +180,7 @@ function generateTags(){
     });
   }
   //tagList.innerHTML = allTagsHTML;
-  tagList.innerHTML = template_tag_cloud.articleCloudTag(allTagsData);
+  tagList.innerHTML = templateTagCloud.articleCloudTag(allTagsData);
 }
 
 generateTags();
@@ -242,7 +242,7 @@ function generateAuthors(){
     const articleAuthors = article.getAttribute('data-author');
     //-------------------------------------------------------------------------------------------------------
     const linkHTMLData = {href: articleAuthors, title: articleAuthors};
-    const authorHTML = templates_article_author.articleLinkAuthor(linkHTMLData);
+    const authorHTML = templatesArticleAuthor.articleLinkAuthor(linkHTMLData);
     //const authorHTML = 'by <a href="#author-' + articleAuthors + '">' + articleAuthors +'</a>';
     html = html + authorHTML;
     wrapperFinder.innerHTML = html;
@@ -261,7 +261,7 @@ function generateAuthors(){
     }
     //authorsList.innerHTML += authorsListHTML;
     //console.log(authorsListHTML);
-    authorsList.innerHTML += template_author_cloud.articleCloudAuthor(authorsListHTML);
+    authorsList.innerHTML += templateAuthorCloud.articleCloudAuthor(authorsListHTML);
   }
 }
 
